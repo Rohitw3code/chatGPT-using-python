@@ -1,7 +1,27 @@
 import os
 import openai
+import pyttsx3
 
-openai.api_key = "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"#os.getenv("OPENAI_API_KEY")
+engine = pyttsx3.init()
+
+openai.api_key = "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"#os.getenv("OPENAI_API_KEY")
+
+
+def insert_newline(string):
+  if len(string) > 100:
+    newString = ""
+    for i in range(len(string)):
+      if string[i] == " " and (i + 1) % 100 == 0:
+        newString += '\n'
+      else:
+        newString += string[i]
+    return newString
+  return string
+
+def nextLine(myString):
+  if len(myString) > 100:
+    myString = myString[:100] + "\n" + myString[100:]
+  return myString
 
 
 def aiResponse(msg):
@@ -22,5 +42,8 @@ while True:
   msg = str(input("Human: "))
   text+="\nHuman: "+msg+"\nAI:"
   ai = aiResponse(text).strip()
-  print(ai)
+  engine.say(ai)
+  engine.runAndWait()
+  print("AI : ",nextLine(ai))
+  print()
   text+=ai
