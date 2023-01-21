@@ -1,24 +1,24 @@
-import os
 import openai
-import pyttsx3
 import speech_recognition as sr
-import pyttsx3
-import cv2
-import asyncio
 import edge_tts
+import asyncio
 from playsound import playsound
-from pydub import AudioSegment
-from pydub.playback import play
+import os
 import os
 
+import edge_tts
+import openai
+import speech_recognition as sr
+from playsound import playsound
 
-VOICE = "en-GB-SoniaNeural"
+# https://github.com/georgezhao2010/azure_cognitive_speech/blob/main/voice_list.json
+
+VOICE = "hi-IN-SwaraNeural"
 OUTPUT_FILE = 'test.mp3'
 
 r = sr.Recognizer()
-engine = pyttsx3.init()
 
-openai.api_key = "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"#os.getenv("OPENAI_API_KEY")
+openai.api_key = os.getenv("OPENAI_API_KEY")
 
 async def _main(ai) -> None:
     communicate = edge_tts.Communicate(ai, VOICE)
