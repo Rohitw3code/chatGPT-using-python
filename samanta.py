@@ -4,8 +4,6 @@ import edge_tts
 import asyncio
 from playsound import playsound
 import os
-import os
-
 import edge_tts
 import openai
 import speech_recognition as sr
